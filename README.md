@@ -3,9 +3,6 @@
 ### 🚀 About Me
 I'm a passionate developer, enjoy solving problems, that's all.
 
-### 💻 Technical Stack
-- Nothing
-
 ### 📁 Featured Projects
 Here are some of my notable projects:
 
@@ -13,14 +10,7 @@ Here are some of my notable projects:
 2. **[Clashmac Mihomo Kernel Helper](https://github.com/lukuochiang/clashmac-mihomo-kernel-helper)** - Built for ClashMac kernel management.
 
 ### 📫 Get in Touch
-- **GitHub**: [lukuochiang](https://github.com/lukuochiang)
 - **X**: [@lukuochiang](https://x.com/lukuochiang)
-
-### 🌱 Currently Learning
-- Nothing
-
-### 👯 Looking to Collaborate On
-- Nothing
 
 ### ⚡ Fun Fact
 Yearning for freedom!
