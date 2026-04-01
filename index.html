@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lu Kuochiang - Software Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Source+Serif+Pro:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #1a202c;
+            --card-bg: white;
+            --card-border: rgba(226, 232, 240, 0.8);
+            --name-color: #1a202c;
+            --title-color: #4a5568;
+            --desc-color: #4a5568;
+            --desc-strong-color: #1a202c;
+            --desc-em-color: #718096;
+            --tech-bg: rgba(66, 153, 225, 0.08);
+            --tech-text: #2b6cb0;
+            --tech-border: rgba(66, 153, 225, 0.15);
+            --social-bg: #f7fafc;
+            --social-text: #4a5568;
+            --social-border: #e2e8f0;
+            --social-hover-bg: white;
+            --social-hover-border: #cbd5e0;
+            --radial-1: rgba(66, 153, 225, 0.03);
+            --radial-2: rgba(237, 100, 166, 0.03);
+            --title-accent-start: #4299e1;
+            --title-accent-end: rgba(66, 153, 225, 0.2);
+            --twitter-color: #1DA1F2;
+            --github-color: #24292e;
+            --telegram-color: #26A5E4;
+            --email-color: #666666;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --text-color: #f1f5f9;
+                --card-bg: #1e293b;
+                --card-border: rgba(100, 116, 139, 0.3);
+                --name-color: #f8fafc;
+                --title-color: #cbd5e1;
+                --desc-color: #cbd5e1;
+                --desc-strong-color: #f8fafc;
+                --desc-em-color: #94a3b8;
+                --tech-bg: rgba(66, 153, 225, 0.15);
+                --tech-text: #90cdf4;
+                --tech-border: rgba(66, 153, 225, 0.3);
+                --social-bg: #334155;
+                --social-text: #cbd5e1;
+                --social-border: #475569;
+                --social-hover-bg: #475569;
+                --social-hover-border: #64748b;
+                --radial-1: rgba(66, 153, 225, 0.05);
+                --radial-2: rgba(237, 100, 166, 0.05);
+                --title-accent-start: #60a5fa;
+                --title-accent-end: rgba(96, 165, 250, 0.3);
+                --twitter-color: #2db1ff;
+                --github-color: #f0f6fc;
+                --telegram-color: #2db1ff;
+                --email-color: #aaaaaa;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, var(--radial-1) 0%, transparent 55%),
+                radial-gradient(circle at 85% 30%, var(--radial-2) 0%, transparent 55%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .content {
+            padding: 48px 56px;
+        }
+
+        .info {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .avatar-container {
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border: 4px solid var(--card-bg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name-title {
+            flex: 1;
+            min-width: 300px;
+            margin-top: 8px;
+        }
+
+        .name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--name-color);
+            margin-bottom: 8px;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: var(--title-color);
+            font-weight: 500;
+            margin-bottom: 32px;
+            letter-spacing: 0.3px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--title-accent-start) 0%, var(--title-accent-end) 100%);
+            border-radius: 1px;
+        }
+
+        .description {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-size: 17px;
+            color: var(--desc-color);
+            line-height: 1.8;
+            font-weight: 400;
+            /*margin-bottom: 1.4em;*/
+            width: 100%;
+            letter-spacing: -0.01em;
+            text-align: left;
+        }
+        
+        .description strong {
+            font-weight: 600;
+            color: var(--desc-strong-color);
+        }
+        
+        .description em {
+            font-style: italic;
+            color: var(--desc-em-color);
+        }
+        
+        .tech-term {
+            font-family: 'Fira Code', 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.9em;
+            background: var(--tech-bg);
+            color: var(--tech-text);
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+            font-weight: 500;
+            border: 1px solid var(--tech-border);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--social-bg);
+            color: var(--social-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid var(--social-border);
+            font-size: 18px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background: var(--social-hover-bg);
+            border-color: var(--social-hover-border);
+        }
+
+        .social-link i {
+            font-size: 18px;
+        }
+
+        .social-link.twitter {
+            color: var(--twitter-color);
+        }
+
+        .social-link.github {
+            color: var(--github-color);
+        }
+
+        .social-link.telegram {
+            color: var(--telegram-color);
+        }
+
+        .social-link.email {
+            color: var(--email-color);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 40px 32px;
+            }
+
+            .info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 24px;
+            }
+
+            .avatar-container {
+                align-self: center;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .name-title {
+                min-width: auto;
+                margin-top: 0;
+            }
+
+            .name {
+                font-size: 32px;
+            }
+
+            .title {
+                font-size: 16px;
+                text-align: center;
+            }
+            
+            .title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .description {
+                font-size: 16px;
+                line-height: 1.7;
+                text-align: left;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 32px 24px;
+            }
+
+            .name {
+                font-size: 28px;
+            }
+
+            .title {
+                font-size: 15px;
+            }
+
+            .description {
+                font-size: 15px;
+                line-height: 1.7;
+                text-align: left;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="content">
+            <div class="info">
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <img src="https://avatars.githubusercontent.com/u/239187505?v=4" alt="Lu Kuochiang">
+                    </div>
+                </div>
+                <div class="name-title">
+                    <h1 class="name">Lu Kuochiang</h1>
+                    <p class="title">Software Developer</p>
+                </div>
+                <p class="description">
+                    Hi! I'm Lu Kuochiang, a software developer passionate about building elegant solutions to complex problems.
+                </p>
+                <p class="description">
+                    My expertise lies in backend development using Java and Spring ecosystem, with hands-on experience in microservices architecture and distributed systems. I'm skilled in performance optimization, caching strategies, and message-driven architectures.
+                </p>
+                <p class="description">
+                    I also have solid frontend development skills (React/Vue) and practical experience with infrastructure tools (Linux/Docker), allowing me to approach system design from a holistic perspective.
+                </p>
+                <p class="description">
+                    I value clean architecture, clear boundaries, and code that stands the test of time.
+                </p>
+                <div class="social-links">
+                    <a href="https://x.com/lukuochiang" class="social-link twitter" aria-label="X (Twitter)">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/lukuochiang" class="social-link github" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://t.me/lukuochiang" class="social-link telegram" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="mailto:lukuochiang@gmail.com" class="social-link email" aria-label="Email">
+                        <i class="fas fa-at"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
