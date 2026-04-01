@@ -1,15 +1,14 @@
 ## Hi, I'm Kuochiang! 👋
 
 ### 🚀 About Me
-I'm a passionate developer, enjoy solving problems, that's all.
+A passionate developer who loves solving problems.
 
 ### 📁 Featured Projects
-Here are some of my notable projects:
 
-1. **[Clashmac Mihomo Kernel Helper](https://github.com/lukuochiang/clashmac-mihomo-kernel-helper)** - Built for ClashMac kernel management.
-2. **[ClashFox Mihomo Toolkit](https://github.com/lukuochiang/ClashFox-Mihomo-Toolkit)** - Makes Mihomo kernel management simple and efficient.
-3. **[ClashFox](https://github.com/lukuochiang/ClashFox)** - Make Mihomo kernel management a lot of fun!
-4. **[ClashFox-Helper](https://github.com/lukuochiang/ClashFox-Helper)** - A custom macOS Privileged Helper is provided to allow desktop applications to safely perform network operations that require root privileges.
+- **[ClashMac Mihomo Kernel Helper](https://github.com/lukuochiang/clashmac-mihomo-kernel-helper)** - ClashMac kernel management tool
+- **[ClashFox Mihomo Toolkit](https://github.com/lukuochiang/ClashFox-Mihomo-Toolkit)** - Simple and efficient Mihomo kernel management
+- **[ClashFox](https://github.com/lukuochiang/ClashFox)** - Making Mihomo kernel management fun!
+- **[ClashFox-Helper](https://github.com/lukuochiang/ClashFox-Helper)** - macOS Privileged Helper for secure network operations
 
 ### 📫 Get in Touch
 - **X**: [@lukuochiang](https://x.com/lukuochiang)
