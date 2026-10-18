@@ -1,127 +1,280 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lu Kuochiang - Software Developer</title>
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/239187505?v=4&size=64" />
-    <favicon href="https://avatars.githubusercontent.com/u/239187505?v=4" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Primary -->
+    <title>Lu Kuochiang — Software Developer</title>
+    <meta name="description" content="Software developer focused on building reliable, scalable, and well-crafted software. Specializing in backend engineering with Java and the Spring ecosystem.">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+
+    <!-- Social preview -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Lu Kuochiang — Software Developer">
+    <meta property="og:description" content="Software developer focused on building reliable, scalable, and well-crafted software. Specializing in backend engineering with Java and the Spring ecosystem.">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/239187505?v=4&size=512">
+    <meta property="og:site_name" content="Lu Kuochiang">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Lu Kuochiang — Software Developer">
+    <meta name="twitter:description" content="Software developer focused on building reliable, scalable, and well-crafted software. Specializing in backend engineering with Java and the Spring ecosystem.">
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/239187505?v=4&size=512">
+
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/239187505?v=4&size=64">
+    <link rel="apple-touch-icon" href="https://avatars.githubusercontent.com/u/239187505?v=4&size=180">
+
+    <!-- Fonts: only the weights actually used (Poppins 500/600/700, Inter 400/500/600) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Source+Serif+Pro:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Applied before first paint so a stored theme never flashes the wrong palette. -->
+    <script>
+        (function () {
+            try {
+                const mode = localStorage.getItem('theme');
+                if (mode === 'light' || mode === 'dark') {
+                    document.documentElement.setAttribute('data-theme', mode);
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <style>
+        /* ============================================================
+           1. Tokens
+
+           Theme resolution order:
+             data-theme="dark"  → forced dark
+             data-theme="light" → forced light
+             absent             → follows prefers-color-scheme
+           ============================================================ */
+        /* Palette — warm paper and ink.
+           The static radial gradients are gone: the canvas backdrop paints
+           its own organic line-work now, layered on top of --bg-color. */
         :root {
-            --bg-color: #f8fafc;
-            --text-color: #1a202c;
-            --card-bg: white;
-            --card-border: rgba(226, 232, 240, 0.8);
-            --name-color: #1a202c;
-            --title-color: #4a5568;
-            --desc-color: #4a5568;
-            --desc-strong-color: #1a202c;
-            --desc-em-color: #718096;
-            --tech-bg: rgba(66, 153, 225, 0.08);
-            --tech-text: #2b6cb0;
-            --tech-border: rgba(66, 153, 225, 0.15);
-            --social-bg: #f7fafc;
-            --social-text: #4a5568;
-            --social-border: #e2e8f0;
-            --social-hover-bg: white;
-            --social-hover-border: #cbd5e0;
-            --radial-1: rgba(66, 153, 225, 0.03);
-            --radial-2: rgba(237, 100, 166, 0.03);
-            --title-accent-start: #4299e1;
-            --title-accent-end: rgba(66, 153, 225, 0.2);
-            --twitter-color: #1DA1F2;
+            color-scheme: light dark;
+
+            --font-display: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+            --bg-color: #f4f1ea;
+            --text-color: #1f1b16;
+
+            /* Soft halo settled behind the text (plan B). It brightens toward
+               paper white here so body copy gains contrast, never loses it. */
+            --paper-halo: rgba(255, 253, 248, 0.88);
+
+            --name-color: #1f1b16;
+            --title-color: #6b6155;
+            --desc-color: #524a40;
+            --desc-strong-color: #1f1b16;
+            --desc-em-color: #6f6555;
+
+            --social-bg: #f5f1e8;
+            --social-text: #524a40;
+            --social-border: #e0d7c8;
+            --social-hover-bg: #fffdf9;
+            --social-hover-border: #c9bda9;
+
+            --shadow-avatar: 0 8px 24px rgba(82, 68, 52, 0.12);
+            --shadow-avatar-hover: 0 12px 32px rgba(82, 68, 52, 0.18);
+
+            --title-accent-start: #3f8dc4;
+            --title-accent-end: rgba(63, 141, 196, 0.22);
+
+            --focus-ring: #3f8dc4;
+
+            --twitter-color: #1da1f2;
             --github-color: #24292e;
-            --telegram-color: #26A5E4;
-            --email-color: #666666;
+            --telegram-color: #26a5e4;
+            --email-color: #524a40;
         }
 
+        /* "Follow system" — only when the user has not pinned light. */
         @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #0f172a;
-                --text-color: #f1f5f9;
-                --card-bg: #1e293b;
-                --card-border: rgba(100, 116, 139, 0.3);
-                --name-color: #f8fafc;
-                --title-color: #cbd5e1;
-                --desc-color: #cbd5e1;
-                --desc-strong-color: #f8fafc;
-                --desc-em-color: #94a3b8;
-                --tech-bg: rgba(66, 153, 225, 0.15);
-                --tech-text: #90cdf4;
-                --tech-border: rgba(66, 153, 225, 0.3);
-                --social-bg: #334155;
-                --social-text: #cbd5e1;
-                --social-border: #475569;
-                --social-hover-bg: #475569;
-                --social-hover-border: #64748b;
-                --radial-1: rgba(66, 153, 225, 0.05);
-                --radial-2: rgba(237, 100, 166, 0.05);
-                --title-accent-start: #60a5fa;
-                --title-accent-end: rgba(96, 165, 250, 0.3);
-                --twitter-color: #2db1ff;
+            :root:not([data-theme="light"]) {
+                --bg-color: #131110;
+                --text-color: #f2ede2;
+
+                /* Same contrast logic, opposite direction: the halo deepens
+                   toward black so warm text reads against a darker ground. */
+                --paper-halo: rgba(11, 10, 9, 0.55);
+
+                --name-color: #f7f3ea;
+                --title-color: #c8bda9;
+                --desc-color: #cbbfa9;
+                --desc-strong-color: #f7f3ea;
+                --desc-em-color: #9c9079;
+
+                --social-bg: #2a251d;
+                --social-text: #cbbfa9;
+                --social-border: #443c30;
+                --social-hover-bg: #443c30;
+                --social-hover-border: #5d5343;
+
+                --shadow-avatar: 0 8px 24px rgba(0, 0, 0, 0.4);
+                --shadow-avatar-hover: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+                --title-accent-start: #6ea8dc;
+                --title-accent-end: rgba(110, 168, 220, 0.3);
+
+                --focus-ring: #6ea8dc;
+
+                /* X renders its glyph near-white on dark surfaces; this also
+                   separates it from Telegram's brand blue. */
+                --twitter-color: #e7e9ea;
                 --github-color: #f0f6fc;
-                --telegram-color: #2db1ff;
-                --email-color: #aaaaaa;
+                --telegram-color: #2aabee;
+                --email-color: #cbbfa9;
             }
         }
 
-        * {
+        /* Forced dark.
+           NOTE: the dark palette is declared twice — once above for the
+           "follow system" case, once here for the pinned case. CSS has no
+           way to share a declaration block between a media query and a
+           selector, so these two lists must be kept in sync. */
+        :root[data-theme="dark"] {
+            color-scheme: dark;
+
+            --bg-color: #131110;
+            --text-color: #f2ede2;
+
+            --paper-halo: rgba(11, 10, 9, 0.55);
+
+            --name-color: #f7f3ea;
+            --title-color: #c8bda9;
+            --desc-color: #cbbfa9;
+            --desc-strong-color: #f7f3ea;
+            --desc-em-color: #9c9079;
+
+            --social-bg: #2a251d;
+            --social-text: #cbbfa9;
+            --social-border: #443c30;
+            --social-hover-bg: #443c30;
+            --social-hover-border: #5d5343;
+
+            --shadow-avatar: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-avatar-hover: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+            --title-accent-start: #6ea8dc;
+            --title-accent-end: rgba(110, 168, 220, 0.3);
+
+            --focus-ring: #6ea8dc;
+
+            --twitter-color: #e7e9ea;
+            --github-color: #f0f6fc;
+            --telegram-color: #2aabee;
+            --email-color: #cbbfa9;
+        }
+
+        /* Forced light: opting out of `light dark` keeps UA controls
+           (scrollbars, form widgets) from following the OS. */
+        :root[data-theme="light"] {
+            color-scheme: light;
+        }
+
+        /* ============================================================
+           2. Reset & base
+           ============================================================ */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-family: var(--font-body);
             background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 15% 50%, var(--radial-1) 0%, transparent 55%),
-                radial-gradient(circle at 85% 30%, var(--radial-2) 0%, transparent 55%);
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
             color: var(--text-color);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
         }
 
-        .container {
+        /* Living Architecture backdrop: sits between the page colour and the
+           card, and never intercepts input. */
+        .backdrop {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Visible, high-contrast focus ring for keyboard users. */
+        :focus-visible {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* ============================================================
+           3. Layout
+           ============================================================ */
+        /* Layout shell only — no fill, border, radius or shadow. The content
+           sits directly on the paper now, so the "Living Architecture"
+           backdrop runs behind it instead of being cropped by a panel. */
+        .card {
             width: 100%;
             max-width: 850px;
-        }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--card-border);
-        }
+            /* Plan B — a feathered halo rather than a hard panel: lifts the
+               text off the line-work without ever revealing an edge.
+               To drop plan B, remove only these three declarations. */
+            background: radial-gradient(
+                ellipse 65% 60% at 50% 44%,
+                var(--paper-halo) 0%,
+                var(--paper-halo) 34%,
+                transparent 76%
+            );
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.06);
+            /* Still stacked above the backdrop canvas. */
+            position: relative;
+            z-index: 1;
         }
 
         .content {
             padding: 48px 56px;
         }
 
-        .info {
+        .profile {
             display: flex;
-            flex-wrap: wrap;
             align-items: flex-start;
-            gap: 20px;
+            gap: 24px;
         }
 
+        /* Measure is capped at the optimal 45–75 characters per line. */
+        .bio {
+            max-width: 65ch;
+            margin-top: 32px;
+        }
+
+        /* ============================================================
+           4. Profile header
+           ============================================================ */
         .avatar-container {
             flex-shrink: 0;
         }
@@ -131,49 +284,47 @@
             height: 140px;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            border: 4px solid var(--card-bg);
+            box-shadow: var(--shadow-avatar);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .avatar:hover {
             transform: scale(1.02);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-avatar-hover);
         }
 
         .avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .name-title {
             flex: 1;
-            min-width: 300px;
-            margin-top: 8px;
+            padding-top: 8px;
         }
 
         .name {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-display);
             font-size: 42px;
             font-weight: 700;
             color: var(--name-color);
-            margin-bottom: 8px;
             line-height: 1.1;
             letter-spacing: -0.5px;
+            margin-bottom: 8px;
         }
 
         .title {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-display);
             font-size: 18px;
-            color: var(--title-color);
             font-weight: 500;
-            margin-bottom: 32px;
+            color: var(--title-color);
             letter-spacing: 0.3px;
             position: relative;
             padding-bottom: 12px;
         }
-        
+
         .title::after {
             content: '';
             position: absolute;
@@ -185,44 +336,69 @@
             border-radius: 1px;
         }
 
+        /* ============================================================
+           5. Bio
+           ============================================================ */
+        /* Book-style paragraphing: the indent is the one and only marker, so
+           there is no vertical gap competing with it (hence no margin below).
+
+           Justify is deliberately absent. English can only stretch inter-word
+           spaces to reach the right edge, which tears "rivers" through the
+           column; Chinese stretches letter spacing instead, which is why the
+           same treatment looks clean there. At this measure the natural ragged
+           edge is small enough to read as rhythm rather than disorder. */
         .description {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             font-size: 17px;
-            color: var(--desc-color);
             line-height: 1.8;
-            font-weight: 400;
-            /*margin-bottom: 1.4em;*/
-            width: 100%;
-            letter-spacing: -0.01em;
-            text-align: justify;
+            color: var(--desc-color);
+            text-indent: 1.5em;
         }
-        
+
         .description strong {
             font-weight: 600;
             color: var(--desc-strong-color);
         }
-        
+
         .description em {
             font-style: italic;
             color: var(--desc-em-color);
         }
-        
-        .tech-term {
-            font-family: 'Fira Code', 'SF Mono', Monaco, Consolas, monospace;
-            font-size: 0.9em;
-            background: var(--tech-bg);
-            color: var(--tech-text);
-            padding: 0.1em 0.3em;
-            border-radius: 3px;
-            font-weight: 500;
-            border: 1px solid var(--tech-border);
+
+        /* ============================================================
+           7. Social links
+           ============================================================ */
+        /* Tighter than a section-to-section gap: with no Projects block in
+           between, the social row should read as the sign-off of the article
+           rather than the heading of another section. */
+        .social {
+            margin-top: 32px;
+        }
+
+        /* Both the links and the theme control share one row so every round
+           button reads as a single set. Wraps freely: narrow phones simply
+           drop the utility onto its own line. */
+        .social-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Separates the utility from the links — same row, different kind of
+           thing. Deliberately shorter than the 44px buttons so it never
+           competes with them. */
+        .social-divider {
+            width: 1px;
+            height: 28px;
+            background: var(--social-border);
+            flex-shrink: 0;
         }
 
         .social-links {
+            list-style: none;
             display: flex;
+            flex-wrap: wrap;
             gap: 16px;
-            margin-top: 40px;
-            width: 100%;
         }
 
         .social-link {
@@ -231,13 +407,12 @@
             border-radius: 50%;
             background: var(--social-bg);
             color: var(--social-text);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.2s ease;
             border: 1px solid var(--social-border);
-            font-size: 18px;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .social-link:hover {
@@ -247,50 +422,86 @@
             border-color: var(--social-hover-border);
         }
 
-        .social-link i {
-            font-size: 18px;
+        .social-link:active {
+            transform: translateY(0);
         }
 
-        .social-link.twitter {
-            color: var(--twitter-color);
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            display: block;
         }
 
-        .social-link.github {
-            color: var(--github-color);
+        .social-link.twitter { color: var(--twitter-color); }
+        .social-link.github { color: var(--github-color); }
+        .social-link.telegram { color: var(--telegram-color); }
+        .social-link.email { color: var(--email-color); }
+
+        /* ============================================================
+           7b. Theme toggle — one shared icon slot, three states
+
+           Lives at the end of the social row: same visual family, so every
+           round control reads as one set, while the wider gap and divider
+           keep it from being mistaken for a fifth profile link.
+           It reuses .social-link purely for the 44px round hit-area styling.
+           ============================================================ */
+        .theme-toggle {
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            padding: 0;
+            font: inherit;
+            line-height: 1;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .social-link.telegram {
-            color: var(--telegram-color);
+        /* All three glyphs live in the same 44px slot; only the state
+           matching the current mode is rendered. */
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+            display: none;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        .social-link.email {
-            color: var(--email-color);
-        }
+        /* No data-theme → following the system. */
+        .theme-toggle .icon-auto { display: block; }
 
+        :root[data-theme="light"] .theme-toggle .icon-auto { display: none; }
+        :root[data-theme="light"] .theme-toggle .icon-light { display: block; }
+
+        :root[data-theme="dark"] .theme-toggle .icon-auto { display: none; }
+        :root[data-theme="dark"] .theme-toggle .icon-dark { display: block; }
+
+        /* ============================================================
+           8. Responsive
+           ============================================================ */
         @media (max-width: 768px) {
             .content {
                 padding: 40px 32px;
             }
 
-            .info {
+
+
+            .profile {
                 flex-direction: column;
                 align-items: center;
+                gap: 20px;
                 text-align: center;
-                gap: 24px;
             }
 
-            .avatar-container {
-                align-self: center;
+            .name-title {
+                padding-top: 0;
             }
 
             .avatar {
                 width: 120px;
                 height: 120px;
-            }
-
-            .name-title {
-                min-width: auto;
-                margin-top: 0;
             }
 
             .name {
@@ -299,21 +510,23 @@
 
             .title {
                 font-size: 16px;
-                text-align: center;
             }
-            
+
             .title::after {
                 left: 50%;
                 transform: translateX(-50%);
             }
 
+            .bio {
+                margin-top: 28px;
+            }
+
             .description {
                 font-size: 16px;
                 line-height: 1.7;
-                text-align: justify;
             }
 
-            .social-links {
+            .social-row {
                 justify-content: center;
             }
         }
@@ -322,6 +535,8 @@
             .content {
                 padding: 32px 24px;
             }
+
+
 
             .name {
                 font-size: 28px;
@@ -333,8 +548,13 @@
 
             .description {
                 font-size: 15px;
-                line-height: 1.7;
-                text-align: justify;
+            }
+
+            /* Around 400px and below the row wraps, and a 1px divider left
+               alone on its own line reads as a glitch — the line break
+               already separates the two groups there. */
+            .social-divider {
+                display: none;
             }
 
             .avatar {
@@ -342,52 +562,341 @@
                 height: 100px;
             }
         }
+
+        /* ============================================================
+           9. Print
+           ============================================================ */
+        @media print {
+            body {
+                background: none;
+                display: block;
+                padding: 0;
+            }
+
+            .card {
+                max-width: none;
+                background: none;
+            }
+
+            .social-links { display: none; }
+            .theme-toggle { display: none; }
+            .social-divider { display: none; }
+            .backdrop { display: none; }
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="card">
+    <canvas class="backdrop" id="backdrop" aria-hidden="true"></canvas>
+    <main class="card">
         <div class="content">
-            <div class="info">
+            <header class="profile">
                 <div class="avatar-container">
                     <div class="avatar">
-                        <img src="https://avatars.githubusercontent.com/u/239187505?v=4" alt="Lu Kuochiang">
+                        <img src="https://avatars.githubusercontent.com/u/239187505?v=4"
+                             width="140" height="140"
+                             decoding="async"
+                             fetchpriority="high"
+                             alt="Lu Kuochiang">
                     </div>
                 </div>
                 <div class="name-title">
                     <h1 class="name">Lu Kuochiang</h1>
                     <p class="title">Software Developer</p>
                 </div>
-                <p class="description">
-                    Hi! I'm Lu Kuochiang, a software developer passionate about building elegant solutions to complex problems.
-                </p>
-                <p class="description">
-                    My expertise lies in backend development using Java and Spring ecosystem, with hands-on experience in microservices architecture and distributed systems. I'm skilled in performance optimization, caching strategies, and message-driven architectures.
-                </p>
-                <p class="description">
-                    I also have solid frontend development skills (React/Vue) and practical experience with infrastructure tools (Linux/Docker), allowing me to approach system design from a holistic perspective.
-                </p>
-                <p class="description">
-                    I value clean architecture, clear boundaries, and code that stands the test of time.
-                </p>
-                <div class="social-links">
-                    <a href="https://x.com/lukuochiang" class="social-link twitter" aria-label="X (Twitter)">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://github.com/lukuochiang" class="social-link github" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://t.me/lukuochiang" class="social-link telegram" aria-label="Telegram">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                    <a href="mailto:lukuochiang@gmail.com" class="social-link email" aria-label="Email">
-                        <i class="fas fa-at"></i>
-                    </a>
-                </div>
-            </div>
+            </header>
 
+            <section class="bio" aria-label="About">
+                <p class="description">
+                    Hi, I'm Lu Kuochiang — a software developer focused on building reliable, scalable, and well-crafted software.
+                </p>
+                <p class="description">
+                    I specialize in backend engineering with Java and the Spring ecosystem, with experience in microservices, distributed systems, performance optimization, caching, and event-driven architectures.
+                </p>
+                <p class="description">
+                    Beyond the backend, I work with React and Vue on the frontend, and use Linux and Docker to build and operate applications across the stack.
+                </p>
+                <p class="description">
+                    I believe great software is built on clean architecture, well-defined boundaries, and thoughtful engineering decisions — creating systems that remain maintainable as they grow.
+                </p>
+            </section>
+
+            <footer class="social">
+                <div class="social-row">
+                    <nav aria-label="Social links">
+                    <ul class="social-links">
+                        <li>
+                            <a href="https://x.com/lukuochiang" class="social-link twitter" aria-label="X (Twitter)" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/lukuochiang" class="social-link github" aria-label="GitHub" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://t.me/lukuochiang" class="social-link telegram" aria-label="Telegram" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.226-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.26-1.91.178-.184 3.247-2.977 3.307-3.23.005-.02.01-.117-.046-.164-.055-.047-.137-.03-.196-.018-.083.015-1.412.898-3.997 2.635-.378.263-.72.39-1.026.383-.338-.007-1.002-.194-1.482-.354-.596-.198-1.07-.303-1.037-.64.017-.177.257-.36.745-.546 2.925-1.275 4.874-2.117 5.847-2.527 2.796-1.18 3.376-1.386 3.76-1.392z"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:lukuochiang@gmail.com" class="social-link email" aria-label="Email">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    </nav>
+                    <span class="social-divider" aria-hidden="true"></span>
+                    <button type="button" id="theme-toggle" class="social-link theme-toggle"
+                            aria-label="Theme: follow system" title="Theme: follow system">
+                        <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <rect x="2.5" y="4" width="19" height="12.5" rx="2"/>
+                            <path d="M8.5 20.5h7"/>
+                        </svg>
+                        <svg class="icon-light" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <circle cx="12" cy="12" r="4.2"/>
+                            <path d="M12 2.2v2.1M12 19.7v2.1M2.2 12h2.1M19.7 12h2.1M5.1 5.1l1.5 1.5M17.4 17.4l1.5 1.5M18.9 5.1l-1.5 1.5M6.6 17.4l-1.5 1.5"/>
+                        </svg>
+                        <svg class="icon-dark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
+                </div>
+            </footer>
         </div>
-    </div>
-</div>
+    </main>
+
+    <script>
+        /* ============================================================
+           "Living Architecture" backdrop
+
+           A sparse network of nodes linked by gently bowed curves: nodes
+           drift imperceptibly, links fade as neighbours drift out of reach.
+           The intent is something growing slowly, not something animated.
+
+           Three house rules — it never intercepts input, it renders a
+           single frozen frame when motion is reduced, and it stops
+           completely while the tab is in the background.
+           ============================================================ */
+        (function () {
+            const canvas = document.getElementById('backdrop');
+            if (!canvas || !canvas.getContext) return;
+
+            const ctx = canvas.getContext('2d');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+            /* Ink tones follow whichever theme is actually active. */
+            const INK = {
+                light: { line: '92, 82, 68', node: '74, 66, 55', core: '176, 108, 62' },
+                dark: { line: '214, 203, 183', node: '226, 216, 197', core: '198, 138, 86' }
+            };
+
+            const REACH = 190;
+
+            /* Plan A — the network yields around the reading area. Whatever
+               falls inside this soft ellipse is dialled down so the copy
+               stays legible with no card behind it; outside it, the network
+               keeps full strength. The falloff is curved so the transition
+               never reads as a hard boundary. */
+            function yieldTo(x, y) {
+                const dx = (x - width / 2) / (width * 0.34);
+                const dy = (y - height / 2) / (height * 0.40);
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist >= 1) return 1;
+                return 0.18 + 0.82 * Math.pow(dist, 1.6);
+            }
+            let width = 0, height = 0, nodes = [], frameId = null, tick = 0;
+
+            function activeInk() {
+                const pinned = document.documentElement.getAttribute('data-theme');
+                const dark = pinned ? pinned === 'dark' : prefersDark.matches;
+                return dark ? INK.dark : INK.light;
+            }
+
+            function resize() {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = Math.round(width * dpr);
+                canvas.height = Math.round(height * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                seed();
+            }
+
+            /* Density scales with viewport area. The first few nodes are
+               larger and slower — standing in for the stable core that a
+               clean architecture is built around. */
+            function seed() {
+                const count = Math.round(Math.min(58, Math.max(22, (width * height) / 18000)));
+                nodes = [];
+                for (let i = 0; i < count; i++) {
+                    const core = i < 3;
+                    nodes.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * (core ? 0.05 : 0.13),
+                        vy: (Math.random() - 0.5) * (core ? 0.05 : 0.13),
+                        r: core ? 3.6 : 1.4 + Math.random() * 1.6,
+                        core: core,
+                        phase: Math.random() * Math.PI * 2
+                    });
+                }
+            }
+
+            function advance() {
+                for (const node of nodes) {
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    if (node.x < -24) node.x = width + 24;
+                    else if (node.x > width + 24) node.x = -24;
+                    if (node.y < -24) node.y = height + 24;
+                    else if (node.y > height + 24) node.y = -24;
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                const ink = activeInk();
+
+                ctx.lineWidth = 0.8;
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const a = nodes[i];
+                        const b = nodes[j];
+                        const dx = a.x - b.x;
+                        const dy = a.y - b.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist === 0 || dist > REACH) continue;
+
+                        const near = 1 - dist / REACH;
+                        const growth = 0.55 + 0.45 * Math.sin(tick * 0.004 + a.phase + b.phase);
+                        /* Perpendicular offset bends each link into a curve,
+                           so nothing reads as a straight technical grid. */
+                        const bow = Math.sin(tick * 0.002 + a.phase * 2) * dist * 0.06;
+
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.quadraticCurveTo(
+                            (a.x + b.x) / 2 - (dy / dist) * bow,
+                            (a.y + b.y) / 2 + (dx / dist) * bow,
+                            b.x, b.y
+                        );
+                        /* Linear falloff: squared falloff pushed most links
+                           below the visible threshold on light paper. */
+                        const calm = yieldTo((a.x + b.x) / 2, (a.y + b.y) / 2);
+                        ctx.strokeStyle = 'rgba(' + ink.line + ', ' +
+                            (near * 0.26 * growth * calm).toFixed(3) + ')';
+                        ctx.stroke();
+                    }
+                }
+
+                for (const node of nodes) {
+                    /* Narrow breathing range so a node never fades out
+                       entirely at the trough of its cycle. */
+                    const breathe = 0.72 + 0.28 * Math.sin(tick * 0.006 + node.phase);
+                    const alpha = (node.core ? 0.55 : 0.42) * breathe * yieldTo(node.x, node.y);
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.core ? node.r * (0.85 + 0.15 * breathe) : node.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(' + (node.core ? ink.core : ink.node) + ', ' + alpha.toFixed(3) + ')';
+                    ctx.fill();
+                }
+            }
+
+            function loop() {
+                tick += 1;
+                advance();
+                draw();
+                frameId = requestAnimationFrame(loop);
+            }
+
+            function start() {
+                stop();
+                if (reduceMotion.matches) draw();
+                else frameId = requestAnimationFrame(loop);
+            }
+
+            function stop() {
+                if (frameId) cancelAnimationFrame(frameId);
+                frameId = null;
+            }
+
+            let resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    resize();
+                    if (reduceMotion.matches) draw();
+                }, 200);
+            });
+
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) stop();
+                else start();
+            });
+
+            /* A frozen backdrop still has to follow the theme. */
+            function repaintIfFrozen() {
+                if (reduceMotion.matches) draw();
+            }
+            new MutationObserver(repaintIfFrozen).observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: ['data-theme']
+            });
+            prefersDark.addEventListener('change', repaintIfFrozen);
+            reduceMotion.addEventListener('change', start);
+
+            resize();
+            start();
+        })();
+    </script>
+
+    <script>
+        (function () {
+            const STORAGE_KEY = 'theme';
+            const MODES = ['auto', 'light', 'dark'];
+            const LABELS = {
+                auto: 'Theme: follow system',
+                light: 'Theme: light',
+                dark: 'Theme: dark'
+            };
+
+            const root = document.documentElement;
+            const toggle = document.getElementById('theme-toggle');
+            if (!toggle) return;
+
+            function currentMode() {
+                const mode = root.getAttribute('data-theme');
+                return MODES.indexOf(mode) > -1 ? mode : 'auto';
+            }
+
+            function apply(mode) {
+                if (mode === 'auto') root.removeAttribute('data-theme');
+                else root.setAttribute('data-theme', mode);
+
+                try { localStorage.setItem(STORAGE_KEY, mode); } catch (e) {}
+
+                toggle.setAttribute('aria-label', LABELS[mode]);
+                toggle.title = LABELS[mode];
+            }
+
+            /* The head script already set the attribute before paint; only
+               the label needs syncing here. */
+            toggle.setAttribute('aria-label', LABELS[currentMode()]);
+            toggle.title = LABELS[currentMode()];
+
+            toggle.addEventListener('click', function () {
+                apply(MODES[(MODES.indexOf(currentMode()) + 1) % MODES.length]);
+            });
+        })();
+    </script>
 </body>
 </html>
